@@ -1,27 +1,27 @@
-// Common JavaScript Types
+/////// Common JavaScript Types
 
-//Undefined => undefined
-//Null      => null
-//Boolean   => true/false
-//String    => 'Foo'
-//Number    => 34343
-//Object    => {bar: 'Baz'}
-//Function  => function() { ... };
-//Array     => [1, 'string', 2.34, [1, 3, 6]]
-//RegExp    => //
+// Undefined => undefined
+// Null      => null
+// Boolean   => true/false
+// String    => 'Foo'
+// Number    => 34343
+// Object    => {bar: 'Baz'}
+// Function  => function() { ... };
+// Array     => [1, 'string', 2.34, [1, 3, 6]]
+// RegExp    => //
 
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
-// Primitive Types
+/////// Primitive Types
 
-//Undefined => undefined
-//Null      => null
-//Boolean>  => true/false
-//String    => 'Foo'
-//Number    => 34343
-//Object    => {bar: 'Baz'}
+// Undefined => undefined
+// Null      => null
+// Boolean>  => true/false
+// String    => 'Foo'
+// Number    => 34343
+// Object    => {bar: 'Baz'}
 
-// Special Object
+/////// Special Object
 
 //Function  => function() { ... };
 //Array     => []
@@ -47,6 +47,10 @@
       }
  };
 
+
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+
 // Difference Primitive Types object and Object is primitive are passed by value whereas
 // Object is passed by reference.
 
@@ -54,16 +58,13 @@ var number1, number2;
 number1 = 10;
 number2 = number1;
 console.log(number1);
+console.log(number2);
 number2 = 20;
 console.log(number1);
 console.log(number2);
 // here value are getting copied from number1 => number2.
 // So there are two copy each have individually.
 // Primitive data type don't dependent each other.
-
-
-/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////
 // Where as Object are passed by reference
 // So if we  change object1 , object2 get changed.
 
@@ -81,16 +82,17 @@ console.log(object1.x);
 console.log(object2.x);
 // Learn more about object refer java goods part
 
-///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
 
-// Function are regular object so we can assign a property too.
+
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+/// Function are regular object so we can assign a property too.///
 
 function myFunction(a, b){
     return a + b;
 };
 
-myFunction.foo = 'Bar';
+myFunction.foo = 'Bar'; // foo is called as a property of myFunction function.
 var myfunction_obj = myFunction;
 
 console.log(myfunction_obj(2, 3));
@@ -104,11 +106,18 @@ var myObject = {
         return this.val;
     }
 };
+
+
 // For calling get methods , we use object name and method name and parentheses.
-myObject.get();  // parenthese are mandatory for calling the function,
+myObject.get();  // parentheses are mandatory for calling the function,
                  // otherwise it will return the function instead.
 
-// Prototype Inheritance
+
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+////////////// Prototype Inheritance And Playing with 'this' //////
 
 var parent = {
     val: 42,
@@ -119,11 +128,11 @@ var parent = {
 
 var child  = Object.create(parent);
 // Now as we create the object of myObject class and now we can do anything with the child object.
-// we can add/change the value to the chuld object.
+// we can add/change the value to the child object.
+
 child.val = 3.14;
 
-//  we can subclassed this class also
-
+//  we can subclass this class also.
 var grandChild  = Object.create(child);
 
 parent.get();     // 42
@@ -131,14 +140,14 @@ child.get();      // 3.14
 grandChild.get(); // 3.14
 
 // THIS IS THE FUNDAMENTAL OF INHERITANCE JAVASCRIPT , AS WE HAVE SEEN OTHER WAYS OF TALKING ABOUT
-// JAVASCRIPT INHERITANCE THEY MIGHT FOCUS ON CLASS OR SOMETHINGELSE FIRST . BUT THIS IS A BASIC OF
-// PROTOTYPE BASED INHERITANCE. HAE JAVA SCRIPT HAVE ONLY ONE NO ANY FORM OF INHERITANCE OTHER THAN
-// PTOTOTYOE INHERITANCE.
+// JAVASCRIPT INHERITANCE THEY MIGHT FOCUS ON CLASS OR SOMETHINGS FIRST . BUT THIS IS A BASIC OF
+// PROTOTYPE BASED INHERITANCE. JAVA SCRIPT HAVE ONLY ONE NO ANY FORM OF INHERITANCE OTHER THAN
+// PROTOTYPE INHERITANCE.
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-// POLYMORPHISN AND METHOD OVERRIDING
-// POLYMORPHISN mean same method but different behaviour.
+/////////// POLYMORPHISMS AND METHOD OVERRIDING //////////////
+/// POLYMORPHISMS mean same method but different behaviour.///
 
 // sometime we need to override the methods in child class which inherit from parent .
 
@@ -158,9 +167,9 @@ firmanswer.get = function() {
 answer.get();     // 42
 firmanswer.get(); // 42!!
 
-///////////////////////////////// Some reseach 1 ////////////////////////////
-///////////////////////////////// Some reseach 1/////////////////////////////
-// we are doing this research beacuse the os code dublicacy 'this.val' two
+///////////////////////////////// Some research 1 ////////////////////////////
+///////////////////////////////// Some research 1/////////////////////////////
+// we are doing this research because there is code delicacy 'this.val' two
 // times and much more thing are going there.
 
 
@@ -179,11 +188,11 @@ firmanswer.get = function() {
 };
 
 answer.get();     // 42
-firmanswer.get(); // 42!! // even ki we hasd change the value of val variabe.
+firmanswer.get(); // 42!! // even ki we had changed the value of val variable.
 
 
-///////////////////////////////// Some reseach 2 ////////////////////////////
-///////////////////////////////// Some reseach 2 /////////////////////////////
+///////////////////////////////// Some research 2 /////////////////////////////
+///////////////////////////////// Some research 2 /////////////////////////////
 // example of call method
 
 var answer = {
@@ -203,11 +212,13 @@ firmanswer.get = function() {
 answer.get();     // 42
 firmanswer.get(); // 3.14
 
+
+
 /////////////////////////////////////////////////////
 //////////CLASSES AND INSTANTIATION /////////////////
 /////////////////////////////////////////////////////
 // We can define our object anyway you like ,
-// but the common way is to saperate your data from methods.
+// but the common way is to separate your data from methods.
 
 var answer = {
     val: 42, // as we set the value which is hard coded and that will be same for all.
@@ -255,7 +266,7 @@ dessertAnswer.val = 3.14;
 dessertAnswer.get();
 
 
-// This step is curcial.
+// This step is crucial.
 
 var FirmAnswerPrototype = Object.create(AnswerPrototype);
 FirmAnswerPrototype.get = function fn2() {
@@ -272,8 +283,8 @@ magicAnswer.val = 3;
 magicAnswer.get(); // 3!!!
 
 // in this approach prototype typically called classes and the object that extends them call
-// instaiation/instance . a class that extends another class called subclassed of that class.
-// well this is not a good approach 1: violate encapsulation 2: repetation
+// initiation/instance . a class that extends another class called subclass of that class.
+// well this is not a good approach 1: violate encapsulation 2: repetition
 
 
 /////////////////////////////////////////////////////
@@ -282,8 +293,8 @@ magicAnswer.get(); // 3!!!
 
 var AnswerPrototype = { // here we had put the function in the prototype called AnswerPrototype.
     constructor: function fn0(value){
-        this._val = value; // here we chage val => _val this is a preety convention in
-                           // javascript that value is provate.
+        this._val = value; // here we change val => _val this is a pretty convention in
+                           // javascript that value is private.
     },
     get: function fn1() {
         return this._val;
@@ -300,7 +311,7 @@ dessertAnswer.constructor(3.14);
 dessertAnswer.get();
 
 
-// This step is curcial.
+// This step is crucial.
 
 var FirmAnswerPrototype = Object.create(AnswerPrototype);
 FirmAnswerPrototype.get = function fn2() {
@@ -315,12 +326,6 @@ luckyAnswer.get(); // 7!!!
 var magicAnswer  = Object.create(FirmAnswerPrototype);
 magicAnswer.constructor(3);
 magicAnswer.get(); // 3!!!
-
-
-
-
-
-
 
 
 
