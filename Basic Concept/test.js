@@ -8,6 +8,45 @@ var fun = function () {
 };
 fun(2, 3, 4, 5, 5);
 fun(2, 3, 5);
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+function Engine() {
+    function EngineConstructor() { };
+
+    // publicly accessible methods
+    EngineConstructor.prototype.start = function() {
+        // ignitionOn();
+        ignitionOn(this);
+    };
+
+    EngineConstructor.prototype.stop = function() {
+        // ignitionOff();
+        ignitionOff(this);
+    };
+
+    // private methods
+    function ignitionOn(instance) {
+        // does other things and sets this to true
+        // this.ignitionIndicator = true;
+        instance.ignitionIndicator = true;
+    };
+
+    function ignitionOff(instance) {
+        // does other things and sets this to false
+        // this.ignitionIndicator = false;
+        instance.ignitionIndicator = false;
+    };
+
+    return new EngineConstructor();
+};
+var e = new Engine();
+e.start();
+e.ignitionIndicator // undefined, should have been true
+e.stop();
+e.ignitionIndicator // undefined, should have been false
+
+
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
@@ -50,21 +89,17 @@ console.log(my_obj.address && my_obj.address.room_num && my_obj.address.room_num
 ////////////////////////////////////////////////
 
 
-function TestFunction(name, city, duration, marks){
-        this.name = name,
+function TestFunction(name, city, duration, marks) {
+    this.name = name,
         this.city = city,
         this.duration = duration,
         this.marks = marks
-
 };
-
-var testfunction  = new TestFunction('JavaScript', 'Bangalore', '1 Hours', '5');
-testfunction();
+var testfunction = new TestFunction('JavaScript', 'Bangalore', '1 Hours', '5');
+// testfunction(); // Why this methods will not work. // TypeError: testfunction is not a function
 console.log(testfunction.name)
-console.log(testfunction.setName)
 
 TestFunction.setGlobalName = 'John';
 TestFunction.prototype.setName = 'Johny';
-
-
-TestFunction.setGlobalName
+console.log(TestFunction.setGlobalName)
+console.log(testfunction.setName)
