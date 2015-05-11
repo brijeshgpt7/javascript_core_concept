@@ -7,9 +7,9 @@ var sum = function (a, b){
 
 sum(2, 3); // 35
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
 
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
 // 2:
 var Person = function (name, age){
     //private properties
@@ -39,18 +39,12 @@ Person.prototype.setName = function(nameIn) {
 // Tests
 var per = new Person('John Doe', 22);
 
-Person.sayName(); // //Shows alert
-
-per.sayName() // //TypeError: Object [object Object] has no method 'sayName'
-
-per.sayHi(); // //Show alert
-
-per.name; // //John Doe
-
-per.age; // //22
-
+Person.sayName(); // Shows alert
+per.sayName() // TypeError: Object [object Object] has no method 'sayName'
+per.sayHi(); // Show alert
+per.name; // John Doe
+per.age; // 22
 per.setName('Jane Doe');
-
 per.name; //Jane Doe
 
 
@@ -67,13 +61,15 @@ execute("May the force be with you!", 5000);
 
 // Because of closure.
 // A closure is an inner function that has access to the outer (enclosing) function’s variables—scope chain.
-// The closure has three scope chains: it has access to its own scope (variables defined between its curly
-// brackets), it has access to the outer function’s variables, and it has access to the global variables.
+// The closure has three scope chains:
+// 1: It has access to its own scope (variables defined between its curly brackets).
+// 2: It has access to the outer function’s variables.
+// 3: It has access to the global variables.
+
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 // 6:
-
 // object literal => if we don't have don't have behaviour associated with an object.
 // we should use an object literal
 var company = {
@@ -102,8 +98,6 @@ MyData.prototype.verify = function () {
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 // 7 :
-
-
 function Engine() {
     function EngineConstructor() { };
 
@@ -119,16 +113,16 @@ function Engine() {
     };
 
     // private methods
-    function ignitionOn(instance) {
+    function ignitionOn(i) {
         // does other things and sets this to true
         // this.ignitionIndicator = true;
-        instance.ignitionIndicator = true;
+        i.ignitionIndicator = true;
     };
 
-    function ignitionOff(instance) {
+    function ignitionOff(i) {
         // does other things and sets this to false
         // this.ignitionIndicator = false;
-        instance.ignitionIndicator = false;
+        i.ignitionIndicator = false;
     };
 
     return new EngineConstructor();
@@ -138,6 +132,7 @@ e.start();
 e.ignitionIndicator // undefined, should have been true
 e.stop();
 e.ignitionIndicator // undefined, should have been false
+
 
 
 /////////////////////////////////////////////////
@@ -151,6 +146,5 @@ var fun = function () {
     };
     return sum;
 };
-fun(1, 2, 3) // 6
-fun(2, 3, 4, 8) // 17
-
+fun(1, 2, 3); // 6
+fun(2, 3, 4, 8); // 17
