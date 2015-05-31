@@ -51,20 +51,7 @@ per.name; //Jane Doe
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // 3:
-function execute(message, timeout) {
-    function inner() {
-        console.log(message);
-    };
-    window.setTimeout(inner, timeout);
-};
-execute("May the force be with you!", 5000);
-
 // Because of closure.
-// A closure is an inner function that has access to the outer (enclosing) function’s variables—scope chain.
-// The closure has three scope chains:
-// 1: It has access to its own scope (variables defined between its curly brackets).
-// 2: It has access to the outer function’s variables.
-// 3: It has access to the global variables.
 
 
 ////////////////////////////////////////////////

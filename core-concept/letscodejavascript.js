@@ -1,4 +1,6 @@
-/////// Common JavaScript Types
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+// JavaScript data types
 
 // Undefined => undefined
 // Null      => null
@@ -10,9 +12,8 @@
 // Array     => [1, 'string', 2.34, [1, 3, 6]]
 // RegExp    => //
 
-/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////
-/////// Primitive Types
+
+// Primitive Types
 
 // Undefined => undefined
 // Null      => null
@@ -21,7 +22,7 @@
 // Number    => 34343
 // Object    => {bar: 'Baz'}
 
-/////// Special Object
+// Special Object
 
 //Function  => function() { ... };
 //Array     => []
@@ -30,7 +31,6 @@
 
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
-
 // Object are key/value pair in other language we called Dictionary, associative array or hash. But
 // basically it is key value pair.
 
@@ -50,9 +50,8 @@
 
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
-
-// Difference Primitive Types object and Object is primitive are passed by value whereas
-// Object is passed by reference.
+// Difference Primitive Types object and Object.
+// Object is passed by reference whereas Primitive Types object not.
 
 var number1, number2;
 number1 = 10;
@@ -81,257 +80,4 @@ object2.x = 20;
 console.log(object1.x);
 console.log(object2.x);
 // Learn more about object refer java goods part
-
-
-
-///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
-/// Function are regular object so we can assign a property too.///
-
-function myFunction(a, b){
-    return a + b;
-};
-
-myFunction.foo = 'Bar'; // foo is called as a property of myFunction function.
-var myfunction_obj = myFunction;
-
-console.log(myfunction_obj(2, 3));
-
-// When we put the function inside the object here object mean key/value pair,
-// we typically called as methods.
-
-var myObject = {
-    val: 42,
-    get: function() {
-        return this.val;
-    }
-};
-
-
-// For calling get methods , we use object name and method name and parentheses.
-myObject.get();  // parentheses are mandatory for calling the function,
-                 // otherwise it will return the function instead.
-
-
-///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
-////////////// Prototype Inheritance And Playing with 'this' //////
-
-var parent = {
-    val: 42,
-    get: function() {
-        return this.val;
-    }
-};
-
-var child  = Object.create(parent);
-// Now as we create the object of myObject class and now we can do anything with the child object.
-// we can add/change the value to the child object.
-
-child.val = 3.14;
-
-//  we can subclass this class also.
-var grandChild  = Object.create(child);
-
-parent.get();     // 42
-child.get();      // 3.14
-grandChild.get(); // 3.14
-
-// THIS IS THE FUNDAMENTAL OF INHERITANCE JAVASCRIPT , AS WE HAVE SEEN OTHER WAYS OF TALKING ABOUT
-// JAVASCRIPT INHERITANCE THEY MIGHT FOCUS ON CLASS OR SOMETHINGS FIRST . BUT THIS IS A BASIC OF
-// PROTOTYPE BASED INHERITANCE. JAVA SCRIPT HAVE ONLY ONE NO ANY FORM OF INHERITANCE OTHER THAN
-// PROTOTYPE INHERITANCE.
-
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-/////////// POLYMORPHISMS AND METHOD OVERRIDING //////////////
-/// POLYMORPHISMS mean same method but different behaviour.///
-
-// sometime we need to override the methods in child class which inherit from parent .
-
-var answer = {
-    val: 42,
-    get: function() {
-        return this.val;
-    }
-};
-
-var firmanswer  = Object.create(answer);
-
-firmanswer.get = function() {
-    return this.val + '!!';
-};
-
-answer.get();     // 42
-firmanswer.get(); // 42!!
-
-///////////////////////////////// Some research 1 ////////////////////////////
-///////////////////////////////// Some research 1/////////////////////////////
-// we are doing this research because there is code delicacy 'this.val' two
-// times and much more thing are going there.
-
-
-var answer = {
-    val: 42,
-    get: function() {
-        return this.val;
-    }
-};
-
-var firmanswer  = Object.create(answer);
-
-firmanswer.val = 3.14;
-firmanswer.get = function() {
-    return answer.val + '!!';
-};
-
-answer.get();     // 42
-firmanswer.get(); // 42!! // even ki we had changed the value of val variable.
-
-
-///////////////////////////////// Some research 2 /////////////////////////////
-///////////////////////////////// Some research 2 /////////////////////////////
-// example of call method
-
-var answer = {
-    val: 42,
-    get: function() {
-        return this.val;
-    }
-};
-
-var firmanswer  = Object.create(answer);
-
-firmanswer.val = 3.14;
-firmanswer.get = function() {
-    return answer.get.call(this) + '!!';
-};
-
-answer.get();     // 42
-firmanswer.get(); // 3.14
-
-
-
-/////////////////////////////////////////////////////
-//////////CLASSES AND INSTANTIATION /////////////////
-/////////////////////////////////////////////////////
-// We can define our object anyway you like ,
-// but the common way is to separate your data from methods.
-
-var answer = {
-    val: 42, // as we set the value which is hard coded and that will be same for all.
-    get: function() {
-        return this.val;
-    }
-};
-answer.get(); // 42
-
-
-// instead of this what people generally do, create the methods and the set value
-// and call that methods on it.
-
-var AnswerPrototype = { // here we had put the function in the prototype called AnswerPrototype.
-    get: function() {
-        return this.val;
-    }
-};
-
-// now multiple Object extends that prototype and doing there work.
-var lifeAnswer = Object.create(AnswerPrototype);
-lifeAnswer.val = 42;
-lifeAnswer.get();
-
-var dessertAnswer = Object.create(AnswerPrototype);
-dessertAnswer.val = 3.14;
-dessertAnswer.get();
-
-/////////////////////////////////////////////////////
-/////////////////////////////////////////////////////
-
-var AnswerPrototype = { // here we had put the function in the prototype called AnswerPrototype.
-    get: function fn1() {
-        return this.val;
-    }
-};
-
-// now multiple Object extends that prototype and doing there work.
-var lifeAnswer = Object.create(AnswerPrototype);
-lifeAnswer.val = 42;
-lifeAnswer.get();
-
-var dessertAnswer = Object.create(AnswerPrototype);
-dessertAnswer.val = 3.14;
-dessertAnswer.get();
-
-
-// This step is crucial.
-
-var FirmAnswerPrototype = Object.create(AnswerPrototype);
-FirmAnswerPrototype.get = function fn2() {
-    return AnswerPrototype.get.call(this) + '!!!';
-}
-
-var luckyAnswer  = Object.create(FirmAnswerPrototype);
-luckyAnswer.val = 7;
-luckyAnswer.get(); // 7!!!
-
-
-var magicAnswer  = Object.create(FirmAnswerPrototype);
-magicAnswer.val = 3;
-magicAnswer.get(); // 3!!!
-
-// in this approach prototype typically called classes and the object that extends them call
-// initiation/instance . a class that extends another class called subclass of that class.
-// well this is not a good approach 1: violate encapsulation 2: repetition
-
-
-/////////////////////////////////////////////////////
-////////////// Refactoring the above program ////////
-/////////////////////////////////////////////////////
-
-var AnswerPrototype = { // here we had put the function in the prototype called AnswerPrototype.
-    constructor: function fn0(value){
-        this._val = value; // here we change val => _val this is a pretty convention in
-                           // javascript that value is private.
-    },
-    get: function fn1() {
-        return this._val;
-    }
-};
-
-// now multiple Object extends that prototype and doing there work.
-var lifeAnswer = Object.create(AnswerPrototype);
-lifeAnswer.constructor(42);
-lifeAnswer.get();
-
-var dessertAnswer = Object.create(AnswerPrototype);
-dessertAnswer.constructor(3.14);
-dessertAnswer.get();
-
-
-// This step is crucial.
-
-var FirmAnswerPrototype = Object.create(AnswerPrototype);
-FirmAnswerPrototype.get = function fn2() {
-    return AnswerPrototype.get.call(this) + '!!!';
-}
-
-var luckyAnswer  = Object.create(FirmAnswerPrototype);
-luckyAnswer.constructor(7);
-luckyAnswer.get(); // 7!!!
-
-
-var magicAnswer  = Object.create(FirmAnswerPrototype);
-magicAnswer.constructor(3);
-magicAnswer.get(); // 3!!!
-
-
-
-
-
-
-
-
 
