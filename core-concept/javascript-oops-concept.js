@@ -58,7 +58,7 @@ alert(oClass.publicVar);
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 // How to create a public variable in class
-//there are two way of creating the public variable.
+// there are two way of creating the public variable.
 // 1: By using prototype.
 // 2: By using this.
 
@@ -94,9 +94,7 @@ var rabbit = {};
 rabbit.speak = function(line) {
     console.log("The rabbit says '", line, "'");
 };
-
 rabbit.speak("Well, now you're asking me.");
-
 
 
 // There are four patterns of invocation in JavaScript:
@@ -104,11 +102,6 @@ rabbit.speak("Well, now you're asking me.");
 // the constructor invocation pattern,
 // and the apply invocation pattern. The patterns differ in how the bonus
 // parameter this is initialized. JavaScript good parts 27
-
-
-
-
-
 // Create a constructor function called Quo.
 // It makes an object with a status property.
 var Quo = function (string) {
@@ -134,52 +127,6 @@ var statusObject = {
 var status = Quo.prototype.get_status.apply(statusObject);
 // status is 'A-OK'
 
-
-
-
-
-var my_obj = {
-    'first_name': 'Vinay',
-    'last_name': 'Gupta',
-    'mobile_number': {
-        'home_mobile': 9412566109,
-        'personal_number': 8867165476,
-        'official_number': 88671543667
-    },
-    'address': {
-        'city': 'Bangalore',
-        'street': 'Roopeana Agaraha'
-    }
-};
-console.log(my_obj);
-console.log(my_obj.first_name);
-console.log(my_obj.mobile_number.personal_number);
-console.log(my_obj.address.city);
-// The || operator can be used to fill in default values:
-// Attempting to retrieve values from undefined will throw a TypeError exception. This
-// can be guarded against with the && operator:
-console.log(my_obj.address && my_obj.address.room_num && my_obj.address.room_num.er) || 'Sorry Dude';
-
-
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-
-
-function TestFunction(name, city, duration, marks) {
-    this.name = name,
-        this.city = city,
-        this.duration = duration,
-        this.marks = marks
-};
-var testfunction = new TestFunction('JavaScript', 'Bangalore', '1 Hours', '5');
-// testfunction(); // Why this methods will not work. // TypeError: testfunction is not a function
-console.log(testfunction.name)
-
-TestFunction.setGlobalName = 'John';
-TestFunction.prototype.setName = 'Johny';
-console.log(TestFunction.setGlobalName)
-console.log(testfunction.setName)
 
 
 // For more about javascript OOPS // http://rog.ie/blog/javascript-classes

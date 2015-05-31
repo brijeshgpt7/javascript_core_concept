@@ -61,6 +61,3 @@ thing1 = something1();
 alert(thing1);
 
 // result => Hi there, I'm number 1!
-
-
-
